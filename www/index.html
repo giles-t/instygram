@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" ng-app="app">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My AngularJS App</title>
+  <link rel="stylesheet" href="css/bootstrap.css"/>
+  <link rel="stylesheet" href="css/styles.css"/>
+</head>
+<body>
+
+  <div id="wrapper" ng-class="{active: menuActive}">
+
+    <topnav></topnav>
+
+    <div id="content-wrapper">
+      <div ui-view></div>
+      <div id="backdrop"></div>
+    </div>
+
+  </div>
+
+  <!-- Firebase -->
+  <script src="//cdn.firebase.com/v0/firebase.js"></script>
+
+  <!-- Libraries -->
+  <script src="lib/jquery/jquery.js"></script>
+  <script src="lib/lodash/dist/lodash.js"></script>
+  <script src="lib/angular/angular.js"></script>
+  <script src="lib/angularfire/angularfire.js"></script>
+  <script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="lib/angular-touch/angular-touch.js"></script>
+  <script src="lib/angular-resource/angular-resource.js"></script>
+  <script src="lib/bootstrap/dist/js/bootstrap.js"></script>
+
+  <!-- App -->
+  <script src="js/app.js"></script>
+  <script src="js/services.js"></script>
+  <script src="js/controllers.js"></script>
+  <script src="js/filters.js"></script>
+  <script src="js/directives.js"></script>
+  
+</body>
+</html>

@@ -1,0 +1,63 @@
+
+
+.media-container {
+  margin:0 auto 40px auto;
+  .thumbnail {
+    position:relative;
+    margin:0;
+    background-color:transparent;
+    border:none;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    overflow:hidden;
+    img, video {
+      transition:all 0.5s;
+    }
+    .caption {
+      margin:0;
+      padding-left:0;
+      padding-right:0;
+      text-align:center;
+      border-top-left-radius:0;
+      border-top-right-radius:0;
+      > div {
+        display:inline-block;
+        margin:0 10px;
+      }
+      > .media-votes {
+        margin-left:0;
+      }
+      > .media-comments {
+        margin-right:0;
+      }
+    }
+  }
+  > .thumbnail > .user-profile-img {
+    display:inline;
+    width:30px;
+    height:30px;
+    margin-bottom:4px;
+  }
+  > .thumbnail > .user-profile-name {
+    display:inline;
+    color:#f5f5f5;
+  }
+  > .thumbnail .user-content-type {
+    position:absolute;
+    top:11px;
+    right:4px;
+    color:#f5f5f5;
+  }
+  .inner.thumbnail {
+    padding:0;
+    border-bottom-left-radius:0;
+    border-bottom-right-radius:0;
+    > video {
+      display:block;
+      height:auto;
+      max-width:100%;
+      margin-right:auto;
+      margin-left:auto;
+    }
+  }
+}

@@ -1,0 +1,52 @@
+
+<!-- Mobile Nav -->
+<nav class="navbar navbar-fixed-top visible-xs" role="navigation">
+  <div class="navbar-header">
+    <button id="menu-toggle" type="button" class="navbar-toggle" ng-click="menuToggle()">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="#">{{nav.title}}</a>
+  </div>
+</nav>
+
+<!-- Sidebar -->
+<div id="sidebar-wrapper">
+  <ul class="sidebar-nav">
+    <li class="sidebar-brand hidden-xs">
+      <a href="#">
+        {{nav.title}}
+      </a>
+    </li>
+    <div class="panel-group" id="nav-accordion">
+      <div ng-repeat="(key, category) in categories" class="panel panel-default sidebar-nodes">
+          <h4>
+            <a data-toggle="collapse" data-parent="#nav-accordion" data-target="#node-{{$index}}">
+              {{category.name}}
+            </a>
+          </h4>
+        <div id="node-{{$index}}" class="panel-collapse collapse">
+          <ul>
+            <li ng-repeat="person in people[key]" ng-class="{active: activeNode === person}">
+              <a ng-href="#/follow/{{person.id}}">
+                {{person.name.first}} 
+                <span ng-if="person.name.alias">"{{person.name.alias}}"</span>
+                {{person.name.last}}
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="sidebar-footer">
+      <a ng-href="{{nav.add.href}}" ng-class="{active: activeNode === 'add'}">
+        {{nav.add.title}}
+      </a>
+      <a ng-href="{{nav.admin.href}}" ng-class="{active: activeNode === 'admin'}">
+        {{nav.admin.title}}
+      </a>
+    </div>
+  </ul>
+</div>

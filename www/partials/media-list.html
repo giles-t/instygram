@@ -1,0 +1,23 @@
+
+<div class="content-header row">
+
+	<div class="col-lg-2">
+		<img ng-src="{{userData.profile_picture}}" />
+	</div>
+	<div class="col-lg-10">
+		<h1>
+			{{user.name.first}} 
+			<span ng-if="user.name.alias">"{{user.name.alias}}"</span>
+			{{user.name.last}}
+		</h1>
+		<h1><small>{{userData.bio}}</small></h1>
+	</div>
+
+</div>
+
+<div ng-controller="contentController" ng-class="{blur: blur}" class="content-page inset row">
+	<media class="faded" blur="{blur}" ng-repeat="media in mediaListData"></media>
+</div>
+
+<!-- Modal -->
+<div ui-view autoscroll="false"></div>

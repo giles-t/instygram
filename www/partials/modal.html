@@ -1,0 +1,58 @@
+
+<div id="modal" ng-click="closeModal($event)" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button id="modal_close" type="button" class="close" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">
+          <img ng-src="{{media.user.profile_picture}}" class="user-profile-img">
+          <span class="user-username">{{media.user.username}}</span>
+        </h4>
+      </div>
+      <div class="modal-body">
+        <div class="modal-media">
+          <ng-switch class="" on="media.type">
+            <img ng-switch-when="image" ng-src="{{media.images.standard_resolution.url}}" alt="...">
+            <video ng-switch-when="video" loop autoplay>
+              <source ng-src="{{media.videoSrcLow}}" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </ng-switch>
+        </div>
+        <div class="modal-meta row">
+          <div class="meta-caption col-xs-12 col-sm-12" ng-show="media.caption.text">{{media.caption.text}}</div>
+          <div class="meta-data row">
+            <div class="col-xs-4 col-sm-4">
+              <span class="glyphicon glyphicon-thumbs-up"></span>
+              <span>45.7k</span>
+            </div>
+            <div class="col-xs-4 col-sm-4">
+              <span class="glyphicon glyphicon-heart"></span>
+              <span>{{media.likes.count}}</span>
+            </div>
+            <div class="col-xs-4 col-sm-4">
+              <!-- <span class="glyphicon glyphicon-play"></span> -->
+              <span class="glyphicon glyphicon-filter"></span>
+              <span>{{media.filter}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="modal-comments">
+          <div class="comment row" ng-repeat="data in media.comments.data">
+            <div class="comment-profile-img col-xs-2 col-sm-1">
+              <img ng-src="{{data.from.profile_picture}}">
+            </div>
+            <div class="comment-text col-xs-10 col-sm-11">
+              {{data.text}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> <!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!--       <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div> -->

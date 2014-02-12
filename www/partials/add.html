@@ -1,0 +1,38 @@
+
+<div class="add-content col-sm-12">
+  <form ng-hide="success" novalidate name="form" role="form-horizontal">
+    <div class="form-group">
+      <label class="hidden-xs">Alias</label>
+      <input type="text" class="form-control" placeholder='Alias "Jay-Z" (Optional)' ng-model="person.name.alias">
+    </div>
+    <div class="form-group">
+      <label class="hidden-xs">First Name</label>
+      <input type="text" class="form-control" placeholder='First Name "Shawn"' ng-model="person.name.first" required>
+    </div>
+    <div class="form-group">
+      <label class="hidden-xs">Last Name</label>
+      <input type="text" class="form-control" placeholder='Last Name "Carter"' ng-model="person.name.last" required>
+    </div>
+    <div class="form-group">
+      <label class="hidden-xs">Category</label>
+      <select class="form-control" ng-model="person.category" required ng-options="value.id as value.name for (key, value) in categories">
+      </select>
+    </div>
+    <div class="input-group">
+      <span class="input-group-addon">@</span>
+      <input type="text" class="form-control" placeholder="Instagram" ng-model="person.instagram" required>
+    </div>
+    <div class="input-group">
+      <span class="input-group-addon">@</span>
+      <input type="text" class="form-control" placeholder="Twitter (Optional)" ng-model="person.twitter">
+    </div>
+    <div class="input-group">
+      <span class="input-group-addon">wiki/</span>
+      <input type="text" class="form-control" placeholder="Wikipedia" ng-model="person.wiki" required>
+    </div>
+    <button ng-click="update(person)" ng-disabled="form.$invalid || isUnchanged(person)" class="btn btn-default">Add {{person.name.first}} {{person.name.last}}</button>
+  </form>
+  <h1 ng-hide="!success">
+    {{successMessage}} <small>{{awardDescription}}</small>
+  </h1>
+</div>

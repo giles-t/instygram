@@ -1,0 +1,20 @@
+{
+  "name": "Instygram Bower",
+  "version": "0.0.1",
+  "dependencies": {
+    "jquery": "~2.1.0",
+    "angular": "~1.2.9",
+    "angular-resource": "~1.2.9",
+    "angular-sanitize": "~1.2.9",
+    "angular-touch": "~1.2.9",
+    "angularfire": "~0.6.0",
+    "angular-ui-router": "~0.2.7",
+    "bootstrap": "~3.0.3",
+    "lodash": "~2.4.1"
+  },
+  "devDependencies": {},
+  "nonManagedDependencies": {},
+  "resolutions": {
+    "angular": "1.2.9"
+  }
+}

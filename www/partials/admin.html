@@ -1,0 +1,151 @@
+
+<div>
+  <div class="col-sm-12 table-responsive">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Category</th>
+          <th>Instagram</th>
+          <th>Wiki</th>
+          <th>Twitter</th>
+          <th>Approve/Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="(key, person) in pendingPeople">
+          <td>{{$index}}</td>
+          <td>{{person.name.first}}</td>
+          <td>{{person.name.last}}</td>
+          <td>{{person.category}}</td>
+          <td>
+            <a ng-href="http://instagram.com/{{person.instagram}}">@{{person.instagram}}</a>
+          </td>
+          <td>
+            {{person.instagramID}}
+            <input type="text" class="form-control" ng-model="person.instagramID">
+          </td>
+          <td>
+            <a ng-href="http://en.wikipedia.org/wiki/{{person.wiki}}">{{person.wiki}}</a>
+          </td>
+          <td>
+            <a ng-href="https://twitter.com/{{person.twitter}}">@{{person.twitter}}</a>
+          </td>
+          <td>
+            <button type="button" ng-click="approve(key, person)" ng-disabled="personAlreadyExists(person)" class="btn btn-success">Approve</button>
+            <button type="button" ng-click="delete(key)" class="btn btn-danger">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div>
+  <div class="col-sm-12">
+    <form ng-hide="success" novalidate name="form" role="form-horizontal">
+      <div class="form-group">
+        <label class="hidden-xs">Add Category</label>
+        <input type="text" class="form-control" placeholder='Category' ng-model="category.name" required>
+      </div>
+      <button ng-click="addCategory(category)" ng-disabled="form.$invalid || categoryAlreadyExists(category)" class="btn btn-default">Add {{category.name}}</button>
+    </form>
+  </div>
+  <div class="col-sm-12 col-lg-6">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Active Categories</th>
+          <th>ID</th>
+          <th>Delete Category</th>
+          <th ng-if="editingCat">Edit Category</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="(key, cat) in categories">
+          <td>{{$index}}</td>
+          <td>{{cat.name}}</td>
+          <td>{{cat.id}}</td>
+          <td>
+            <button type="button" ng-click="removeCategory(cat)" class="btn btn-danger">Delete</button>
+            <button type="button" ng-if="!editingCat" ng-click="editCategory(key)" class="btn btn-warning">Edit</button>
+            <button type="button" ng-if="editingCat" ng-click="doneEditCategory(key)" class="btn btn-success">Done</button>
+          </td>
+          <td ng-if="editingCat"><input type="text" class="form-control" ng-model="cat.name"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div>
+  <div class="col-sm-12 table-responsive">
+    <a href="http://jelled.com/instagram/lookup-user-id">Instagram ID Lookup</a>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Priority</th>
+          <th>Category</th>
+          <th>Instagram</th>
+          <th>Instagram ID</th>
+          <th>Wiki</th>
+          <th>Twitter</th>
+          <th>Edit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="(key, person) in activePeople">
+          <td>{{$index}}</td>
+          <td>
+            <span ng-if="editingActivePerson !== key">{{person.name.first}}</span>
+            <input ng-if="editingActivePerson === key" type="text" class="form-control" ng-model="person.name.first">
+          </td>
+          <td>
+            <span ng-if="editingActivePerson !== key">{{person.name.last}}</span>
+            <input ng-if="editingActivePerson === key" type="text" class="form-control" ng-model="person.name.last">
+          </td>
+          <td>
+            <span ng-if="editingActivePerson !== key">{{person.$priority}}</span>
+            <input ng-if="editingActivePerson === key" type="text" class="form-control" ng-model="person.$priority">
+          </td>
+          <td>
+            <span ng-if="editingActivePerson !== key">{{person.category}}</span>
+            <input ng-if="editingActivePerson === key" type="text" class="form-control" ng-model="person.category">
+          </td>
+          <td>
+            <a ng-if="editingActivePerson !== key" ng-href="http://instagram.com/{{person.instagram}}">
+              @{{person.instagram}}
+            </a>
+            <input ng-if="editingActivePerson === key" type="text" class="form-control" ng-model="person.instagram">
+          </td>
+          <td>
+            <span ng-if="editingActivePerson !== key">{{person.instagramID}}</span>
+            <input ng-if="editingActivePerson === key" type="text" class="form-control" ng-model="person.instagramID">
+          </td>
+          <td>
+            <a ng-if="editingActivePerson !== key" ng-href="http://en.wikipedia.org/wiki/{{person.wiki}}">
+              {{person.wiki}}
+            </a>
+            <input ng-if="editingActivePerson === key" type="text" class="form-control" ng-model="person.wiki">
+          </td>
+          <td>
+            <a ng-if="editingActivePerson !== key" ng-href="https://twitter.com/{{person.twitter}}">
+              @{{person.twitter}}
+            </a>
+            <input ng-if="editingActivePerson === key" type="text" class="form-control" ng-model="person.twitter">
+          </td>
+          <td>
+            <button type="button" ng-if="editingActivePerson !== key" ng-disabled="editingActivePerson" ng-click="editActivePerson(key, person)" class="btn btn-warning">Edit</button>
+            <button type="button" ng-if="editingActivePerson === key" ng-click="doneEditActivePerson(key, person)" class="btn btn-success">Done</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+<div>

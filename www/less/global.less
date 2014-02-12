@@ -1,0 +1,27 @@
+
+body {
+  background: @body-bg;
+  // background:url(../img/low_contrast_linen.png);
+}
+h1 {
+  color:#ccc;
+}
+.faded .faded {
+  opacity:0.2;
+}
+.blur .faded {
+  video, img {
+    opacity:0.5;
+    -webkit-filter:blur(1px);
+  }
+}
+.glyphicon {
+  vertical-align:top;
+}
+.block {
+  display:block !important;
+}
+
+@media (max-width:767px) {
+	#content-wrapper {padding: 50px 0 0 0;}
+}

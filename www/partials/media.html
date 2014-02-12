@@ -1,0 +1,32 @@
+
+<div class="media-container col-xs-12 col-sm-4 col-md-4 col-lg-3">
+  <div ng-click="launchModal()" ng-mouseenter="mouseEnter()" ng-mouseleave="mouseLeave()" class="thumbnail">
+    <img ng-src="{{media.user.profile_picture}}" class="user-profile-img faded">
+    <h5 class="user-profile-name faded"> {{media.user.username}}</h5>
+    <ng-switch on="media.type">
+	    <span ng-switch-default class="user-content-type faded glyphicon glyphicon-picture"></span>
+	    <span ng-switch-when="video" class="user-content-type faded glyphicon glyphicon-facetime-video"></span>
+    </ng-switch>
+    <ng-switch class="inner thumbnail" on="media.type">
+    	<img ng-switch-default ng-src="{{media.images.low_resolution.url}}" alt="...">
+    	<video ng-switch-when="video" loop>
+			  <source ng-src="{{media.videoSrcLow}}" type="video/mp4">
+				Your browser does not support the video tag.
+			</video>
+    </ng-switch>
+    <div class="caption well faded">
+    	<div class="media-votes">
+	    	<span>22.7k</span>
+	    	<span class="glyphicon glyphicon-thumbs-up"></span>
+	    </div>
+	    <div class="media-likes">
+	    	<span>{{media.likes.count}}</span>
+	    	<span class="glyphicon glyphicon-heart"></span>
+	    </div>
+	    <div class="media-comments">
+	    	<span>{{media.comments.count}}</span>
+				<span class="glyphicon glyphicon-comment"></span>
+			</div>
+    </div>
+  </div>
+</div>

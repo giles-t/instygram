@@ -1,0 +1,15 @@
+
+<div class="content-header">
+
+  <h1>
+    {{awardCategory}} <small>{{awardDescription}}</small>
+  </h1>
+
+</div>
+
+<div ng-controller="contentController" ng-class="{blur: blur}" class="content-page inset">
+	<media class="faded" blur="{blur}" ng-repeat="media in mediaListData.data"></media>
+</div>
+
+<!-- Modal -->
+<div ui-view autoscroll="false"></div>
