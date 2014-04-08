@@ -24,12 +24,12 @@ app.factory('userService', function ($http, instagramApiURL, instagramClienId) {
 });
 
 app.factory('mediaListService', function ($http, instagramApiURL, instagramClienId) {
-	var service = {
+  var service = {
     async: function(user) {
       // $http returns a promise, which has a then function, which also returns a promise
-			var promise = $http({
-	      method: 'JSONP',
-	      responseType: 'json',
+      var promise = $http({
+        method: 'JSONP',
+        responseType: 'json',
         url: instagramApiURL + 'users/' + user + '/media/recent/?callback=JSON_CALLBACK&client_id=' + instagramClienId
       }).then(function (response) {
         // The then function here is an opportunity to modify the response
